@@ -1,103 +1,64 @@
-# 🩺 Breast Cancer Detection – Machine Learning Pipeline
 
-Detect breast cancer (malignant vs. benign) using the classic
-**Wisconsin Breast Cancer Dataset** (built into scikit-learn, 569 samples, 30 features).
+# Breast Cancer Detection
 
----
+This project builds machine learning models to detect breast cancer using medical dataset features. It includes scripts for exploratory data analysis, model training, evaluation, and prediction.
 
-## 📁 Project Structure
+## Installation
 
-```
-breast_cancer_detection/
-├── train.py          # Full training pipeline (4 models)
-├── predict.py        # Load saved model & run inference
-├── eda.py            # Exploratory data analysis + plots
-├── tune.py           # GridSearchCV hyperparameter tuning
-├── requirements.txt  # Python dependencies
-└── outputs/          # Auto-created – holds plots & saved models
-```
+1. Clone the repository:
 
----
+```bash
+git clone https://github.com/qxwgen/breast-cancer-detection.git
+cd breast-cancer-detection
+````
 
-## ⚡ Quick Start
+2. Install the required dependencies:
 
-### 1. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Explore the data
+## Usage
+
+### 1. Exploratory Data Analysis (EDA)
+
+Run the script below to explore and visualize the dataset:
+
 ```bash
 python eda.py
-# Generates: outputs/eda_*.png
 ```
 
-### 3. Train models
+### 2. Train and Evaluate Models
 ```bash
 python train.py
-# Trains: Logistic Regression, Random Forest, Gradient Boosting, SVM
-# Generates: outputs/*.png, outputs/best_model.joblib, outputs/scaler.joblib
 ```
 
-### 4. Tune hyperparameters (optional)
-```bash
-python tune.py
-# Generates: outputs/best_model_tuned.joblib
-```
+### 3. Run Predictions
 
-### 5. Run inference
+Use the trained model to make predictions on new data.
+
 ```bash
 python predict.py
-# Loads saved model and runs predictions on 5 random test samples
 ```
 
----
+## Project Structure
 
-## 🤖 Models Compared
+```
+breast-cancer-detection/
+│
+├── eda.py            # Data exploration and visualization
+├── train.py          # Model training and evaluation
+├── predict.py        # Prediction script
+├── requirements.txt  # Project dependencies
+└── README.md         # Project documentation
+```
 
-| Model | Typical Accuracy | Notes |
-|-------|-----------------|-------|
-| Logistic Regression | ~97% | Fast, interpretable baseline |
-| Random Forest | ~96–98% | Best feature importance |
-| Gradient Boosting | ~97–98% | Strong overall performer |
-| SVM (RBF) | ~97–98% | Excellent with scaled features |
+## Requirements
 
----
+* Python 3.8+
+* Libraries listed in `requirements.txt`
 
-## 📊 Features
+## License
 
-The dataset has **30 numeric features** computed from digitised images of
-fine needle aspirate (FNA) of breast masses:
+This project is open-source and available under the MIT License.
 
-- **Mean, SE, and Worst** values of:
-  radius, texture, perimeter, area, smoothness,
-  compactness, concavity, concave points, symmetry, fractal dimension
-
-**Target classes:**
-- `0` = Malignant
-- `1` = Benign
-
----
-
-## 📈 Outputs
-
-After running `train.py` the `outputs/` folder contains:
-
-| File | Description |
-|------|-------------|
-| `confusion_matrix.png` | Confusion matrix of best model |
-| `roc_curves.png` | ROC curves for all 4 models |
-| `feature_importance.png` | Top 15 features (Random Forest) |
-| `model_comparison.png` | Accuracy & AUC bar chart |
-| `best_model.joblib` | Serialised best model |
-| `scaler.joblib` | Fitted StandardScaler |
-
----
-
-## 🔬 Dataset Reference
-
-> W.N. Street, W.H. Wolberg and O.L. Mangasarian.
-> *Nuclear feature extraction for breast tumor diagnosis.*
-> IS&T/SPIE 1993 International Symposium on Electronic Imaging, 1993.
-
-Available via `sklearn.datasets.load_breast_cancer()`.
